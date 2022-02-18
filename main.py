@@ -1,8 +1,12 @@
+import os
 import requests
 import argparse
+from dotenv import load_dotenv
 from urllib.parse import urlparse
 from requests.exceptions import HTTPError
 
+load_dotenv()
+TOKEN = os.getenv("BITLY_TOKEN")
 
 def count_clicks(token, bitlink):
 
@@ -40,18 +44,14 @@ def shorten_link(token, url):
 
 def main():
 
-    # token = 'Bearer 5773bd9749f71f3e520b922e839d638e0bb8fd34'
-    # url = "https://pixabay.com/ru/images/search/кошка/"   https://bit.ly/3xjkg
-
     parser = argparse.ArgumentParser()
     parser.add_argument('user_url', help='Вставьте ссылку')
-    parser.add_argument('token', help='Вставьте токен')
     arguments = parser.parse_args()
-    token = 'Bearer ' + arguments.token
+    token = 'Bearer ' + TOKEN
 
     try:
         if is_bitlink(token, arguments.user_url):
-            transitions_quantity = count_clicks(arguments.token, arguments.user_url)
+            transitions_quantity = count_clicks(token, arguments.user_url)
             print(f'Количество переходов: {transitions_quantity}')
         else:
             bitlink = shorten_link(token, arguments.user_url)
