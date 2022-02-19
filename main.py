@@ -41,19 +41,20 @@ def shorten_link(token, url):
 
 
 def main():
+
     load_dotenv()
     TOKEN = os.getenv("BITLY_TOKEN")
     parser = argparse.ArgumentParser()
     parser.add_argument('user_url', help='Вставьте ссылку')
     arguments = parser.parse_args()
-    token = 'Bearer ' + TOKEN
+    bitly_token = 'Bearer ' + TOKEN
 
     try:
-        if is_bitlink(token, arguments.user_url):
-            transitions_quantity = count_clicks(token, arguments.user_url)
+        if is_bitlink(bitly_token, arguments.user_url):
+            transitions_quantity = count_clicks(bitly_token, arguments.user_url)
             print(f'Количество переходов: {transitions_quantity}')
         else:
-            bitlink = shorten_link(token, arguments.user_url)
+            bitlink = shorten_link(bitly_token, arguments.user_url)
             print(f'Битлинк: {bitlink}')
 
     except HTTPError as http_error:
