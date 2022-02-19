@@ -44,12 +44,12 @@ def shorten_link(token, url):
 def main():
 
     load_dotenv()
-    TOKEN = os.getenv("BITLY_TOKEN")
+    token = os.getenv("BITLY_TOKEN")
     parser = argparse.ArgumentParser()
     parser.add_argument('user_url', help='Вставьте ссылку')
     arguments = parser.parse_args()
     bitly_token = 'Bearer {token}'
-    formated_bitly_token = bitly_token.format(token=TOKEN)
+    formated_bitly_token = bitly_token.format(token=token)
 
     try:
         if is_bitlink(formated_bitly_token, arguments.user_url):
