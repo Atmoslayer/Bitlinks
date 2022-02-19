@@ -47,14 +47,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('user_url', help='Вставьте ссылку')
     arguments = parser.parse_args()
-    bitly_token = 'Bearer ' + TOKEN
+    bitly_token = 'Bearer {token}'
+    formated_bitly_token = bitly_token.format(token=TOKEN)
 
     try:
-        if is_bitlink(bitly_token, arguments.user_url):
-            transitions_quantity = count_clicks(bitly_token, arguments.user_url)
+        if is_bitlink(formated_bitly_token, arguments.user_url):
+            transitions_quantity = count_clicks(formated_bitly_token, arguments.user_url)
             print(f'Количество переходов: {transitions_quantity}')
         else:
-            bitlink = shorten_link(bitly_token, arguments.user_url)
+            bitlink = shorten_link(formated_bitly_token, arguments.user_url)
             print(f'Битлинк: {bitlink}')
 
     except HTTPError as http_error:
