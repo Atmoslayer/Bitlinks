@@ -1,8 +1,9 @@
-import os
-import requests
 import argparse
-from dotenv import load_dotenv
+import os
 from urllib.parse import urlparse
+
+import requests
+from dotenv import load_dotenv
 from requests.exceptions import HTTPError
 
 
