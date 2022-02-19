@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 from urllib.parse import urlparse
 from requests.exceptions import HTTPError
 
-load_dotenv()
-TOKEN = os.getenv("BITLY_TOKEN")
 
 def count_clicks(token, bitlink):
 
@@ -43,7 +41,8 @@ def shorten_link(token, url):
 
 
 def main():
-
+    load_dotenv()
+    TOKEN = os.getenv("BITLY_TOKEN")
     parser = argparse.ArgumentParser()
     parser.add_argument('user_url', help='Вставьте ссылку')
     arguments = parser.parse_args()
