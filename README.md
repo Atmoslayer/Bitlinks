@@ -14,7 +14,7 @@ Python3 должен быть уже установлен. Затем испол
 ```
 pip install -r requirements.txt
 ```
-###Пример запуска
+### Пример запуска
 ```
 >>>https://pixabay.com/ru/images/search/кошка/
 Битлинк: https://bit.ly/3HLxjkg
